@@ -39,16 +39,24 @@ app.post("/add/country", async (req, res) => {
 
 
 // Create a GET route for "/" that renders countries.ejs with every country from the Countries collection (1 point)
-app.get("/", async (req, res)=>){
-  
-}
-
+app.get("/", async (req, res) => {
+ const countries = await Country.find()
+ res.render("countries.ejs", { countries })
+})
 // Go to countries.ejs and follow the tasks there (2 points)
 
 
 // Create a dynamic PATCH route handler for "/update/{name}" that modifies the population of the country specified in the path (3 points)
 // Test this route on post man
+app.patch("/update/:name", async (req, res) => {
+  const { name } = req.params;
+  const { population } = req.params;
 
+  const updatedCountry = await Country.findOneAndUpdate(
+    {country: name},
+    {population },
+  )
+})
 
 
 // Create a DELETE route handler for "/delete/country" that deletes a country of your choice (3 points)
