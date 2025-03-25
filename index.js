@@ -61,7 +61,12 @@ app.patch("/update/:name", async (req, res) => {
 
 // Create a DELETE route handler for "/delete/country" that deletes a country of your choice (3 points)
 // Test this route on post man
+app.delete("/delete/country", async (req, res) => {
+  const {country} = req.body;
+  const deletedCountry = await Country.findOneAndDelete({ country })
+})
 
+async function startServer() {
 
 async function startServer() {
   
